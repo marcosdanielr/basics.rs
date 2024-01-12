@@ -1,26 +1,25 @@
-use std::io;
+use std::{i128, io};
 
-fn convert_to_int(input: &String) -> i32 {
-    let result = input.trim().parse::<i32>().unwrap();
+fn convert_to_int(input: &String) -> i128 {
+    let result = input.trim().parse::<i128>().unwrap();
 
     result
 }
 
 fn main() {
-    let mut sum: i32 = 0;
-
-    let mut input_value: String = String::new();
+    let mut factorial_input: String = String::new();
     io::stdin()
-        .read_line(&mut input_value)
-        .expect("Erro on read input_number");
+        .read_line(&mut factorial_input)
+        .expect("Error on read factorial input");
 
-    let mut input_value_i32: i32 = convert_to_int(&input_value);
+    let mut factorial: i128 = 1;
 
-    while input_value_i32 != 0 {
-        let r = input_value_i32 % 10;
-        sum += r;
-        input_value_i32 /= 10;
+    let mut factorial_input_int: i128 = convert_to_int(&factorial_input);
+
+    while factorial_input_int > 1 {
+        factorial *= factorial_input_int;
+        factorial_input_int -= 1;
     }
 
-    println!("{}", sum);
+    println!("The factorial is {}", factorial);
 }
